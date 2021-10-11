@@ -1,0 +1,17 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "description": "Processes numbers",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node index.js",
+    "dev": "nodemon"
+  },
+  "author": "Ryan Benson",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "1.18.3",
+    "redis": "2.8.0"
+  }
+}

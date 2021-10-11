@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Runs the API",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node index.js",
+    "test": "npm test"
+  },
+  "author": "Ryan Benson",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.16.3",
+    "pg": "8.0.3",
+    "redis": "2.8.0",
+    "cors": "2.8.4",
+    "nodemon": "1.18.3"
+  }
+}
