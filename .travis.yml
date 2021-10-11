@@ -4,20 +4,20 @@ services:
 before_install:
   # name of the tag doesn't matter, but we'll use it later
   # tag it, where is the filename? what is the context?
-  - docker build -t bensonryan/react-test -f client/Dockerfile.dev ./client
+  - docker build -t bensonryan/local/react-test -f client/Dockerfile.dev ./client
   # if we want to test other services, do more builds, then add to the scripts list
 
 script:
   # use the same tag as before
   # by default, react tests watch, need to use -- --coverage to run and exit
-  - docker run -e CI=true bensonryan/react-test npm test -- --coverage
+  - docker run -e CI=true bensonryan/local/react-test npm test -- --coverage
 
 # push our builds to dockerhub, all 3 of them (using prod dockerfiles)
 after_success:
-  - docker build -t bensonryan/docker-calculator-client ./client
-  - docker build -t bensonryan/docker-calculator-nginx ./nginx
-  - docker build -t bensonryan/docker-calculator-server ./server
-  - docker build -t bensonryan/docker-calculator-worker ./worker
+  - docker build -t bensonryan/bensonryan/docker-calculator-client ./client
+  - docker build -t bensonryan/bensonryan/docker-calculator-nginx ./nginx
+  - docker build -t bensonryan/bensonryan/docker-calculator-server ./server
+  - docker build -t bensonryan/bensonryan/docker-calculator-worker ./worker
 
   # to push to dockerhub, we need to auth
   # `docker login` -> login
@@ -25,7 +25,7 @@ after_success:
   # not using -p MY_STRING_HERE because it would get logged in the build logs
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push our build images to our account
-  - docker push bensonryan/docker-calculator-client
-  - docker push bensonryan/docker-calculator-nginx
-  - docker push bensonryan/docker-calculator-server
-  - docker push bensonryan/docker-calculator-worker
+  - docker push bensonryan/bensonryan/docker-calculator-client
+  - docker push bensonryan/bensonryan/docker-calculator-nginx
+  - docker push bensonryan/bensonryan/docker-calculator-server
+  - docker push bensonryan/bensonryan/docker-calculator-worker
